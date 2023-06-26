@@ -16,6 +16,8 @@ const modalThumnailArr = [...modalProductThumbnail.getElementsByTagName("img")];
 const modalProductImages = document.querySelector("#modalProductImages");
 const modalProductArr = [...modalProductImages.getElementsByTagName("img")];
 
+const prevBtn = document.querySelector('.prev-icon');
+const nextBtn = document.querySelector('.next-icon');
 
 
 
@@ -54,7 +56,33 @@ for (const x of modalThumnailArr) {
     });
 }
 
-productImage.addEventListener("click", function(){openProductModal()});
+
+
+prevBtn.addEventListener("click", function(){
+
+    for (const x of modalProductArr) {
+        const str2 = String(x.className);
+        console.log(str2.display);
+        if (str2.display === "block") {
+            console.log(str2);
+        }
+
+    }
+})
+
+
+
+
+
+productImage.addEventListener("click",function
+(){
+    openProductModal()
+    
+
+
+});
+
+
 modalCloseBtn.addEventListener("click", function(){closeProductModal()});
 overlay.addEventListener("click", function(){closeProductModal()});;
 

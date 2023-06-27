@@ -24,7 +24,6 @@ const nextBtn = document.querySelector('.next-icon');
 
 for (const x of thumnailArr) {
     x.addEventListener("click", function (e) {
-        console.log(e);
         const str = String(e.target.className).replace("-thumbnail", "");
         for (const x of productArr) {
             const str2 = String(x.className);
@@ -69,30 +68,24 @@ productImage.addEventListener("click", function() {
     let slideIndex = 1;
 
     const showSlide = n => {
-        const slides = modalProductArr;
-
-        if (n > slides.length) {
+        if (n > modalProductArr.length) {
             slideIndex = 1
         }
         if (n < 1) {
-            slideIndex = slides.length
+            slideIndex = modalProductArr.length
         }
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+        for (let i = 0; i < modalProductArr.length; i++) {
+            modalProductArr[i].style.display = "none";
         }
-        slides[slideIndex - 1].style.display = "block";
-        console.log("done");
+        modalProductArr[slideIndex - 1].style.display = "block";
 
     };
+    
     showSlide(slideIndex);
 
-    const nextSlide = () => {
-        showSlide(slideIndex += 1);
-    };
-
-    const prevSlide = () => {
-        showSlide(slideIndex -= 1);
-    };
+    const nextSlide = () => showSlide(slideIndex += 1);
+    const prevSlide = () => showSlide(slideIndex -= 1);
+    
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
 

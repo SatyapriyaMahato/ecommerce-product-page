@@ -22,7 +22,6 @@ const nextBtn = document.querySelector('.next-icon');
 
 
 
-
 for (const x of thumnailArr) {
     x.addEventListener("click", function (e) {
         console.log(e);
@@ -47,9 +46,9 @@ for (const x of modalThumnailArr) {
             const str2 = String(x.className);
 
             if (str2 === str) {
-                document.querySelector(`.${str}`).style.display = "block";
+                document.querySelector(`.${str}`).style.display="block";
             } else {
-                document.querySelector(`.${str2}`).style.display = "none";
+                document.querySelector(`.${str2}`).style.display="none";
             }
 
         }
@@ -58,36 +57,54 @@ for (const x of modalThumnailArr) {
 
 
 
-prevBtn.addEventListener("click", function(){
 
-    for (const x of modalProductArr) {
-        const str2 = String(x.className);
-        console.log(str2.display);
-        if (str2.display === "block") {
-            console.log(str2);
+
+
+
+
+
+
+productImage.addEventListener("click", function() {
+    openProductModal();
+    let slideIndex = 1;
+
+    const showSlide = n => {
+        const slides = modalProductArr;
+
+        if (n > slides.length) {
+            slideIndex = 1
         }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+        console.log("done");
 
-    }
-})
+    };
+    showSlide(slideIndex);
 
+    const nextSlide = () => {
+        showSlide(slideIndex += 1);
+    };
 
-
-
-
-productImage.addEventListener("click",function
-(){
-    openProductModal()
-    
+    const prevSlide = () => {
+        showSlide(slideIndex -= 1);
+    };
+    prevBtn.addEventListener("click", prevSlide);
+    nextBtn.addEventListener("click", nextSlide);
 
 
 });
 
 
-modalCloseBtn.addEventListener("click", function(){closeProductModal()});
-overlay.addEventListener("click", function(){closeProductModal()});;
+modalCloseBtn.addEventListener("click", function () { closeProductModal() });
+overlay.addEventListener("click", function () { closeProductModal() });;
 
-cartIcon.addEventListener("click", function(){openCart()});
-overlay.addEventListener("click", function(){closeCart()});
+cartIcon.addEventListener("click", function () { openCart() });
+overlay.addEventListener("click", function () { closeCart() });
 
 
 function addOverlay() {

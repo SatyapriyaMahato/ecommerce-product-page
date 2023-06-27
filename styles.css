@@ -465,6 +465,9 @@ header {
 .hidden {
     display: none;
   }
+  .show{
+    display: block;
+  }
 
 
 @media (max-width: 768px){

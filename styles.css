@@ -333,11 +333,10 @@ header {
 .product-thumbnail img:hover {
   filter: opacity(0.6);
   cursor: pointer;
+  border: .4rem solid var(--Orange);
+  
 }
-.product-thumbnail img:focus {
-  border: 2px solid var(--Orange);
-  filter: opacity(0.6);
-}
+
 /* hero left sectio style end */
 
 /* hero right section style start */

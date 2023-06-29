@@ -126,5 +126,11 @@ function closeCart() {
 
 
 
-
-
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        modalView.classList.remove('hidden');
+    }
+  }
+  
+  let x = window.matchMedia("(max-width: 700px)")
+myFunction(x);

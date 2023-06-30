@@ -19,11 +19,6 @@ const modalProductArr = [...modalProductImages.getElementsByTagName("img")];
 const prevBtn = document.querySelector('.prev-icon');
 const nextBtn = document.querySelector('.next-icon');
 
-const minusBtn = document.querySelector('.minus');
-const plusBtn = document.querySelector('.plus');
-const productQty = document.querySelector('.productQty');
-
-
 for (const x of thumnailArr) {
     x.addEventListener("click", function (e) {
         const str = String(e.target.className).replace("-thumbnail", "");
@@ -118,6 +113,12 @@ function closeCart() {
     overlay.classList.add('hidden');
 };
 
+
+
+// quantity increase and decrease
+const minusBtn = document.querySelector('.minus');
+const plusBtn = document.querySelector('.plus');
+const productQty = document.querySelector('.productQty');
 minusBtn.addEventListener("click", function () {
     let l = Number(productQty.innerHTML);
     if (l > 1) {
@@ -127,8 +128,25 @@ minusBtn.addEventListener("click", function () {
 })
 plusBtn.addEventListener("click", function () {
     let l = Number(productQty.innerHTML);
-
     l += 1;
     productQty.innerHTML = l;
 
 })
+
+
+// modal cart functyionality
+const cartTotal = document.querySelector('.cartTotal');
+const cartPrices = document.querySelector('.cartPrices');
+
+const discountedPrice = document.querySelector('.dp');
+
+let qunatities = Number(productQty.innerHTML);
+let price = Number(discountedPrice.innerHTML);
+let totalPrice = price * qunatities;
+console.log(price, qunatities, totalPrice);
+
+let pricesStr = `$${price}.00×${qunatities}`;
+let totalStr = `=$${totalPrice}.00`;
+
+cartPrices.innerHTML = pricesStr;
+cartTotal.innerHTML = totalStr;

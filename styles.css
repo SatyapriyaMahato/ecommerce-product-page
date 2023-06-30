@@ -393,6 +393,9 @@ header {
   color: var(--Grayish-blue);
   text-decoration: line-through;
 }
+.minus:hover, .plus:hover{
+  cursor: pointer;
+}
 /* price section end */
 
 /* hero buttons start */

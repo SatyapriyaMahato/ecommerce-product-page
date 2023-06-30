@@ -19,7 +19,9 @@ const modalProductArr = [...modalProductImages.getElementsByTagName("img")];
 const prevBtn = document.querySelector('.prev-icon');
 const nextBtn = document.querySelector('.next-icon');
 
-
+const minusBtn = document.querySelector('.minus');
+const plusBtn = document.querySelector('.plus');
+const productQty = document.querySelector('.productQty');
 
 
 for (const x of thumnailArr) {
@@ -45,9 +47,9 @@ for (const x of modalThumnailArr) {
             const str2 = String(x.className);
 
             if (str2 === str) {
-                document.querySelector(`.${str}`).style.display="block";
+                document.querySelector(`.${str}`).style.display = "block";
             } else {
-                document.querySelector(`.${str2}`).style.display="none";
+                document.querySelector(`.${str2}`).style.display = "none";
             }
 
         }
@@ -55,15 +57,7 @@ for (const x of modalThumnailArr) {
 }
 
 
-
-
-
-
-
-
-
-
-productImage.addEventListener("click", function() {
+productImage.addEventListener("click", function () {
     openProductModal();
     let slideIndex = 1;
 
@@ -80,12 +74,12 @@ productImage.addEventListener("click", function() {
         modalProductArr[slideIndex - 1].style.display = "block";
 
     };
-    
+
     showSlide(slideIndex);
 
     const nextSlide = () => showSlide(slideIndex += 1);
     const prevSlide = () => showSlide(slideIndex -= 1);
-    
+
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
 
@@ -124,13 +118,17 @@ function closeCart() {
     overlay.classList.add('hidden');
 };
 
-
-
-function myFunction(x) {
-    if (x.matches) { // If media query matches
-        modalView.classList.remove('hidden');
+minusBtn.addEventListener("click", function () {
+    let l = Number(productQty.innerHTML);
+    if (l > 1) {
+        l -= 1;
+        productQty.innerHTML = l;
     }
-  }
-  
-  let x = window.matchMedia("(max-width: 700px)")
-    myFunction(x);
+})
+plusBtn.addEventListener("click", function () {
+    let l = Number(productQty.innerHTML);
+
+    l += 1;
+    productQty.innerHTML = l;
+
+})

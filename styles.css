@@ -247,7 +247,7 @@ header {
 }
 
 .cart {
-  width: 200px;
+  width: 25em;
   background-color: var(--White);
   z-index: 999;
   position: absolute;
@@ -272,11 +272,18 @@ header {
 .cart-content .item .top {
   padding: 1.5em 0;
   display: flex;
-  gap: 1.5em;
+  justify-content: space-between;
+  /* gap: 1em; */
   align-items: center;
 }
 .btn-checkout {
   box-shadow: none;
+}
+.btn-icon{
+  cursor: pointer;
+}
+.checkout-price{
+  margin: 0;;
 }
 /* cart style end */
 
@@ -544,4 +551,5 @@ header {
   .hero-right, .hero-left{
     width: 100%;
   }
+
 }

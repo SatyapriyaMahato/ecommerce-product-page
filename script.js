@@ -133,4 +133,4 @@ function myFunction(x) {
   }
   
   let x = window.matchMedia("(max-width: 700px)")
-myFunction(x);
+    myFunction(x);

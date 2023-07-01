@@ -279,7 +279,7 @@ header {
 .btn-checkout {
   box-shadow: none;
 }
-.btn-icon{
+.delete-btn-icon{
   cursor: pointer;
 }
 .checkout-price{
@@ -492,6 +492,14 @@ header {
 .attribution {
   font-size: 11px;
   text-align: center;
+}
+
+.empty-text{
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .attribution a {

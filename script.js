@@ -1,3 +1,6 @@
+const cartQtytNums = document.querySelector(".cart-items-number");
+cartQtytNums.style.display = "none";
+
 const overlay = document.querySelector('.overlay');
 const cartIcon = document.querySelector('.cart-icon');
 const cart = document.querySelector('.cart');
@@ -137,16 +140,36 @@ plusBtn.addEventListener("click", function () {
 // modal cart functyionality
 const cartTotal = document.querySelector('.cartTotal');
 const cartPrices = document.querySelector('.cartPrices');
-
 const discountedPrice = document.querySelector('.dp');
+const btnCheckout = document.querySelector('.btn-checkout');
 
-let qunatities = Number(productQty.innerHTML);
-let price = Number(discountedPrice.innerHTML);
-let totalPrice = price * qunatities;
-console.log(price, qunatities, totalPrice);
+const addToCartBtn = document.querySelector('.addToCart-btn');
+const cardContent = document.querySelector('.cart-content');
 
-let pricesStr = `$${price}.00×${qunatities}`;
-let totalStr = `=$${totalPrice}.00`;
 
-cartPrices.innerHTML = pricesStr;
-cartTotal.innerHTML = totalStr;
+addToCartBtn.addEventListener("click", function () {
+    document.querySelector(".item").classList.remove('hidden');
+    document.querySelector(".empty-text").style.display = "none";
+
+
+    let qunatities = Number(productQty.innerHTML);
+
+    cartQtytNums.style.display = "block";
+    cartQtytNums.innerHTML = qunatities;
+
+    let price = Number(discountedPrice.innerHTML);
+    let totalPrice = price * qunatities;
+    console.log(price, qunatities, totalPrice);
+
+    let pricesStr = `$${price}.00×${qunatities}`;
+    let totalStr = `=$${totalPrice}.00`;
+
+    cartPrices.innerHTML = pricesStr;
+    cartTotal.innerHTML = totalStr;
+})
+
+document.querySelector(".delete-btn-icon").addEventListener("click", function () {
+    document.querySelector(".item").classList.add('hidden');
+    document.querySelector(".empty-text").style.display = "flex";
+})
+document.querySelector(".cart-items-number").innerHTML = qunatities;

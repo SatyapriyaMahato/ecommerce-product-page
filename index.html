@@ -55,7 +55,11 @@
           <h2>Cart</h2>
           <hr>
           <div class="cart-content">
-            <div class="item">
+            <div class="empty-text">
+              <p>The card is empty</p>
+            </div>
+            <div class="item hidden">
+
               <div class="top">
                 <img class="cart-item-thumbnail" src="./images/image-product-1-thumbnail.jpg" width="40">
                 <div class="cart-details">
@@ -63,7 +67,7 @@
                   <p><span class="cartPrices"></span><b class="cartTotal"></b>
                   </p>
                 </div>
-                <img class="btn-icon" src="./images/icon-delete.svg" width="10" height="10" alt="">
+                <img class="delete-btn-icon" src="./images/icon-delete.svg" width="10" height="10" alt="">
               </div>
               <button class="btn btn-checkout">Checkout</button>
             </div>
@@ -120,7 +124,7 @@
           <!-- quantity button -->
           <button class="quantity-btn">
             <img class="minus" src="./images/icon-minus.svg" alt="minus sign">
-            <span class="productQty">5</span>
+            <span class="productQty">1</span>
             <img class="plus" src="./images/icon-plus.svg" alt="plus sign">
           </button>
 

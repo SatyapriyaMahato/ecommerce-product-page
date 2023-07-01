@@ -124,15 +124,22 @@ const plusBtn = document.querySelector('.plus');
 const productQty = document.querySelector('.productQty');
 minusBtn.addEventListener("click", function () {
     let l = Number(productQty.innerHTML);
-    if (l > 1) {
+    if (l > 0) {
         l -= 1;
         productQty.innerHTML = l;
+
+    } else {
+        cartQtytNums.style.display = "none";
     }
 })
 plusBtn.addEventListener("click", function () {
+
+
     let l = Number(productQty.innerHTML);
     l += 1;
     productQty.innerHTML = l;
+
+
 
 })
 
@@ -153,9 +160,11 @@ addToCartBtn.addEventListener("click", function () {
 
 
     let qunatities = Number(productQty.innerHTML);
+    if (qunatities > 0) {
+        cartQtytNums.innerHTML = qunatities;
+        cartQtytNums.style.display = "block";
+    }
 
-    cartQtytNums.style.display = "block";
-    cartQtytNums.innerHTML = qunatities;
 
     let price = Number(discountedPrice.innerHTML);
     let totalPrice = price * qunatities;
@@ -171,5 +180,9 @@ addToCartBtn.addEventListener("click", function () {
 document.querySelector(".delete-btn-icon").addEventListener("click", function () {
     document.querySelector(".item").classList.add('hidden');
     document.querySelector(".empty-text").style.display = "flex";
+
+    productQty.innerHTML = 0;
+    cartQtytNums.innerHTML = 0;
+    cartQtytNums.style.display = "none";
 })
 document.querySelector(".cart-items-number").innerHTML = qunatities;

@@ -1,63 +1,61 @@
+'use strc'
+
 const cartQtytNums = document.querySelector(".cart-items-number");
 cartQtytNums.style.display = "none";
 
 const overlay = document.querySelector('.overlay');
-const cartIcon = document.querySelector('.cart-icon');
-const cart = document.querySelector('.cart');
-const modalView = document.querySelector(".modal-view");
-const modalCloseBtn = document.querySelector(".close-icon");
+cartIcon = document.querySelector('.cart-icon');
+cart = document.querySelector('.cart');
+modalView = document.querySelector(".modal-view");
+modalCloseBtn = document.querySelector(".close-icon");
 
-const productThumbnail = document.querySelector('.product-thumbnail');
-const thumnailArr = [...productThumbnail.getElementsByTagName("img")];
 
-const productImage = document.querySelector('.product-image');
-const productArr = [...productImage.getElementsByTagName("img")];
+thumnailArr = [...document.querySelector('.product-thumbnail').getElementsByTagName("img")];
+productArr = [...document.querySelector('.product-image').getElementsByTagName("img")];
 
-const modalProductThumbnail = document.querySelector('#modalProductThumbnail');
-const modalThumnailArr = [...modalProductThumbnail.getElementsByTagName("img")];
+modalThumnailArr = [...document.querySelector('#modalProductThumbnail').getElementsByTagName("img")];
+modalProductArr = [...document.querySelector("#modalProductImages").getElementsByTagName("img")];
 
-const modalProductImages = document.querySelector("#modalProductImages");
-const modalProductArr = [...modalProductImages.getElementsByTagName("img")];
+modalPrevBtn = document.querySelector('.modal-prev-icon');
+modalNextBtn = document.querySelector('.modal-next-icon');
 
-const modalPrevBtn = document.querySelector('.modal-prev-icon');
-const modalNextBtn = document.querySelector('.modal-next-icon');
+defaultPrevBtn = document.querySelector('.default-prev-icon');
+defaultNextBtn = document.querySelector('.default-next-icon');
 
-const defaultPrevBtn = document.querySelector('.default-prev-icon');
-const defaultNextBtn = document.querySelector('.default-next-icon');
 
-for (const x of thumnailArr) {
-    x.addEventListener("click", function (e) {
+// function for the default section
+thumnailArr.forEach(function (thumbnail, index) {
+    thumbnail.addEventListener("click", function () {
+        thumnailArr.forEach(function (thumbnail) {
+            thumbnail.classList.remove("active");
+        });
 
-        const str = String(e.target.className).replace("-thumbnail", "");
-        for (const x of productArr) {
-            const str2 = String(x.className);
+        productArr.forEach(function (image) {
+            image.style.display = "none";
+        });
 
-            if (str2 === str) {
-                document.querySelector(`.${str}`).style.display = "block";
+        productArr[index].style.display = "block";
 
-            } else {
-                document.querySelector(`.${str2}`).style.display = "none";
-            }
-
-        }
+        thumbnail.classList.add("active");
     });
-}
+});
 
-for (const x of modalThumnailArr) {
-    x.addEventListener("click", function (e) {
-        const str = String(e.target.className).replace("-thumbnail", "");
-        for (const x of modalProductArr) {
-            const str2 = String(x.className);
+// function for the modal section
+modalThumnailArr.forEach(function (thumbnail, index) {
+    thumbnail.addEventListener("click", function () {
 
-            if (str2 === str) {
-                document.querySelector(`.${str}`).style.display = "block";
-            } else {
-                document.querySelector(`.${str2}`).style.display = "none";
-            }
+        modalThumnailArr.forEach(function (thumbnail) {
+            thumbnail.classList.remove("active");
+        });
 
-        }
+        modalProductArr.forEach(function (image) {
+            image.style.display = "none";
+        });
+        modalProductArr[index].style.display = "block";
+
+        thumbnail.classList.add("active");
     });
-}
+});
 
 
 productImage.addEventListener("click", function () {
@@ -68,11 +66,12 @@ productImage.addEventListener("click", function () {
 });
 slideShow(productArr, defaultPrevBtn, defaultNextBtn);
 
-
+// Slide show function
 function slideShow(imagesArr, prevBtn, nextBtn) {
     let slideIndex = 1;
 
     const showSlide = n => {
+
         if (n > imagesArr.length) {
             slideIndex = 1
         }
@@ -81,8 +80,13 @@ function slideShow(imagesArr, prevBtn, nextBtn) {
         }
         for (let i = 0; i < imagesArr.length; i++) {
             imagesArr[i].style.display = "none";
+            modalThumnailArr[i].classList.remove("active");
+
+
         }
         imagesArr[slideIndex - 1].style.display = "block";
+
+        modalThumnailArr[slideIndex - 1].classList.add("active");
 
     };
 
@@ -95,14 +99,11 @@ function slideShow(imagesArr, prevBtn, nextBtn) {
     nextBtn.addEventListener("click", nextSlide);
 }
 
-
 modalCloseBtn.addEventListener("click", function () { closeProductModal() });
-
 
 cartIcon.addEventListener("click", function () {
     openCart();
 });
-
 
 
 function addOverlay() {
@@ -121,11 +122,7 @@ function closeProductModal() {
 
 function openCart() {
     cart.classList.toggle('hidden');
-    // overlay.classList.remove('hidden');
 };
-
-
-
 
 
 // quantity increase and decrease
@@ -153,12 +150,11 @@ plusBtn.addEventListener("click", function () {
 
 // modal cart functyionality
 const cartTotal = document.querySelector('.cartTotal');
-const cartPrices = document.querySelector('.cartPrices');
-const discountedPrice = document.querySelector('.dp');
-const btnCheckout = document.querySelector('.btn-checkout');
-
-const addToCartBtn = document.querySelector('.addToCart-btn');
-const cardContent = document.querySelector('.cart-content');
+cartPrices = document.querySelector('.cartPrices');
+discountedPrice = document.querySelector('.dp');
+btnCheckout = document.querySelector('.btn-checkout');
+addToCartBtn = document.querySelector('.addToCart-btn');
+cardContent = document.querySelector('.cart-content');
 
 
 addToCartBtn.addEventListener("click", function () {
@@ -171,7 +167,6 @@ addToCartBtn.addEventListener("click", function () {
         cartQtytNums.innerHTML = qunatities;
         cartQtytNums.style.display = "block";
     }
-
 
     let price = Number(discountedPrice.innerHTML);
     let totalPrice = price * qunatities;

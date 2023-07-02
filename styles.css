@@ -358,14 +358,13 @@ header {
   border-radius: 1em;
 }
 
-.product-thumbnail img:hover,
-.product-thumbnail img:focus-visible {
+.product-thumbnail img:hover {
   filter: opacity(0.6);
   cursor: pointer;
   border: .4rem solid var(--Orange);
 }
 
-.clicked {
+.active {
   filter: opacity(0.6);
   cursor: pointer;
   border: .4rem solid var(--Orange);

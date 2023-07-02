@@ -19,17 +19,22 @@ const modalThumnailArr = [...modalProductThumbnail.getElementsByTagName("img")];
 const modalProductImages = document.querySelector("#modalProductImages");
 const modalProductArr = [...modalProductImages.getElementsByTagName("img")];
 
-const prevBtn = document.querySelector('.prev-icon');
-const nextBtn = document.querySelector('.next-icon');
+const modalPrevBtn = document.querySelector('.modal-prev-icon');
+const modalNextBtn = document.querySelector('.modal-next-icon');
+
+const defaultPrevBtn = document.querySelector('.default-prev-icon');
+const defaultNextBtn = document.querySelector('.default-next-icon');
 
 for (const x of thumnailArr) {
     x.addEventListener("click", function (e) {
+
         const str = String(e.target.className).replace("-thumbnail", "");
         for (const x of productArr) {
             const str2 = String(x.className);
 
             if (str2 === str) {
                 document.querySelector(`.${str}`).style.display = "block";
+
             } else {
                 document.querySelector(`.${str2}`).style.display = "none";
             }
@@ -56,20 +61,28 @@ for (const x of modalThumnailArr) {
 
 
 productImage.addEventListener("click", function () {
-    openProductModal();
+    if (window.innerWidth > 768) {
+        openProductModal();
+        slideShow(modalProductArr, modalPrevBtn, modalNextBtn);
+    }
+});
+slideShow(productArr, defaultPrevBtn, defaultNextBtn);
+
+
+function slideShow(imagesArr, prevBtn, nextBtn) {
     let slideIndex = 1;
 
     const showSlide = n => {
-        if (n > modalProductArr.length) {
+        if (n > imagesArr.length) {
             slideIndex = 1
         }
         if (n < 1) {
-            slideIndex = modalProductArr.length
+            slideIndex = imagesArr.length
         }
-        for (let i = 0; i < modalProductArr.length; i++) {
-            modalProductArr[i].style.display = "none";
+        for (let i = 0; i < imagesArr.length; i++) {
+            imagesArr[i].style.display = "none";
         }
-        modalProductArr[slideIndex - 1].style.display = "block";
+        imagesArr[slideIndex - 1].style.display = "block";
 
     };
 
@@ -80,16 +93,16 @@ productImage.addEventListener("click", function () {
 
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
-
-
-});
+}
 
 
 modalCloseBtn.addEventListener("click", function () { closeProductModal() });
-overlay.addEventListener("click", function () { closeProductModal() });;
 
-cartIcon.addEventListener("click", function () { openCart() });
-overlay.addEventListener("click", function () { closeCart() });
+
+cartIcon.addEventListener("click", function () {
+    openCart();
+});
+
 
 
 function addOverlay() {
@@ -97,24 +110,21 @@ function addOverlay() {
 }
 
 function openProductModal() {
-    modalView.classList.remove('hidden');
+    modalView.style.display = "flex";
     overlay.classList.remove('hidden');
 };
 
 function closeProductModal() {
-    modalView.classList.add('hidden');
+    modalView.style.display = "none";
     overlay.classList.add('hidden');
 };
 
 function openCart() {
-    cart.classList.remove('hidden');
-    overlay.classList.remove('hidden');
+    cart.classList.toggle('hidden');
+    // overlay.classList.remove('hidden');
 };
 
-function closeCart() {
-    cart.classList.add('hidden');
-    overlay.classList.add('hidden');
-};
+
 
 
 
@@ -134,12 +144,9 @@ minusBtn.addEventListener("click", function () {
 })
 plusBtn.addEventListener("click", function () {
 
-
     let l = Number(productQty.innerHTML);
     l += 1;
     productQty.innerHTML = l;
-
-
 
 })
 
@@ -185,4 +192,4 @@ document.querySelector(".delete-btn-icon").addEventListener("click", function ()
     cartQtytNums.innerHTML = 0;
     cartQtytNums.style.display = "none";
 })
-document.querySelector(".cart-items-number").innerHTML = qunatities;
+

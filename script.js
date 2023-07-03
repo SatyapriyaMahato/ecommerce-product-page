@@ -1,4 +1,4 @@
-'use strc'
+"use strict";
 
 const cartQtytNums = document.querySelector(".cart-items-number");
 cartQtytNums.style.display = "none";
